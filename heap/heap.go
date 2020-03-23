@@ -121,14 +121,16 @@ func (heap *Heap) Heapify(index int) {
 	largest := index
   leftChildIndex := heap.getLeftChildIndex(index)
 	rightChildIndex := heap.getRightChildIndex(index)
-	if leftChildIndex == -1 || rightChildIndex == -1 {
-		return
+	if leftChildIndex != -1  {
+		if heap.items[leftChildIndex] > heap.items[largest] {
+			largest = leftChildIndex
+		}
 	}
-	if heap.items[leftChildIndex] > heap.items[largest] {
-		largest = leftChildIndex
-	}
-	if heap.items[rightChildIndex] > heap.items[largest] {
-		largest = rightChildIndex
+
+	if rightChildIndex != -1  {
+		if heap.items[rightChildIndex] > heap.items[largest] {
+			largest = rightChildIndex
+		}
 	}
 	if largest != index {
 		heap.swap(index, largest)
@@ -161,4 +163,17 @@ func MakeHeapFromArray(array []int) *Heap {
 	}
 
 	return h
+}
+
+// Heapsort sorts the array given as input 
+func Heapsort(inputArray []int) []int {
+	h := MakeHeapFromArray(inputArray)
+	sortedArray := make([]int, h.currentSize)
+
+	for h.currentSize > 0 {
+		// Pop decrease h.currentsize by one
+		sortedArray[h.currentSize] = h.Pop()
+	}
+
+	return sortedArray
 }

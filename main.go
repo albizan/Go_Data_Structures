@@ -6,8 +6,7 @@ import (
 )
 
 func main() {
-	var input = []int{1,2,3,4,5}
-	
+	var input = []int{10,50,8, 9,44,11,23,48, 78,78, 77, 79}
 	h := heap.MakeHeapFromArray(input)
 	h2 := heap.MakeHeap(10)
 
@@ -25,4 +24,8 @@ func main() {
 
 	fmt.Println(h)
 	fmt.Println(h2)
+	sortedArray := heap.Heapsort(input)
+
+	fmt.Println("Input Array", input)
+	fmt.Println("Sorted input Array", sortedArray)
 }
